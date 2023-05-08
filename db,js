@@ -1,0 +1,11 @@
+const Koa = require('koa');
+const MongoClient = require('mongodb').MongoClient;
+
+const app = new Koa();
+
+MongoClient.connect('mongodb://localhost:27017/mydatabase', function(err, db) {
+  if (err) throw err;
+
+  app.context.db = db;
+  app.listen(3000);
+});
